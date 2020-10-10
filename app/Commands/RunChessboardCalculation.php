@@ -22,6 +22,11 @@ class RunChessboardCalculation extends Command
      */
     protected $description = 'Runs a chessboard iteration from specific starting coordinates';
 
+    public Chessboard $chessboard;
+    public int $scanCount = 0;
+    public int $queensPlaced = 0;
+    public int $spotsChecked = 0;
+
     /**
      * Execute the console command.
      *
@@ -31,21 +36,27 @@ class RunChessboardCalculation extends Command
     {
         $chessboard = new Chessboard(); 
         
-        $columns = range(0, $chessboard->size - 1);
-        $rows = range(0, $chessboard->size - 1);
+        $columnsToCheck = range(0, $chessboard->size - 1);
+        $rowsToCheck = range(0, $chessboard->size - 1);
 
-        foreach ($columns as $column)
-        {
-            foreach ($rows as $row)
+        while($this->scanCount < 7) {
+            $this->scanCount++;
+            foreach ($columnsToCheck as $column)
             {
-                if ($chessboard->canPlaceWithoutKilling($column, $row)) {
-                    $chessboard->placeQueen($column, $row);
-                };
-                
+                foreach ($rowsToCheck as $row)
+                {
+                    $this->spotsChecked++;
+                    if ($chessboard->canPlaceWithoutKilling($column, $row)) {
+                        $chessboard->placeQueen($column, $row);
+                        $this->queensPlaced++;
+                    };
+                }
             }
         }
 
         $chessboard->printCoordinatesAsTable($this);
+        $this->comment("{$this->spotsChecked} spots checked for eligibility");
+        $this->comment("The board has been scanned {$this->scanCount} times");
     }
 
     /**

@@ -17,7 +17,7 @@ class ChessboardTest extends TestCase
      * A basic test example.
      *
      * @return void
-     */
+    */
     public function tests_that_the_chessboard_prepares_coordinates()
     {
         $chessboard = [
@@ -71,13 +71,26 @@ class ChessboardTest extends TestCase
     public function tests_a_chessboard_can_check_if_a_piece_can_be_placed_on_the_board_without_killing_any_top_left_to_bottom_right_diagonally()
     {
         $toBePlacedQueens = collect([
-            [3,3]
+            [5,2]
         ]);
 
         $toBePlacedQueens->each(function ($queen) {
             $this->chessboard->placeQueen($queen[0], $queen[1]);
         });
 
-        $this->assertFalse($this->chessboard->canPlaceWithoutKilling(4,4));
+        $this->assertFalse($this->chessboard->canPlaceWithoutKilling(4,1));
+    }
+
+    public function tests_a_chessboard_can_check_if_a_piece_can_be_placed_on_the_board_without_killing_any_bottom_left_to_top_right_diagonally()
+    {
+        $toBePlacedQueens = collect([
+            [2,1]
+        ]);
+
+        $toBePlacedQueens->each(function ($queen) {
+            $this->chessboard->placeQueen($queen[0], $queen[1]);
+        });
+
+        $this->assertFalse($this->chessboard->canPlaceWithoutKilling(1,2));
     }
 }

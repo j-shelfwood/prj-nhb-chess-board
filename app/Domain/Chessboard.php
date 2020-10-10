@@ -44,23 +44,27 @@ class Chessboard
             }
         }
         // Test diagonal bottom-left to top-right
-        // column = 2
         $placementRow = 0;
-        for ($placementColumn = $column - $row; $placementColumn > 0; $placementColumn--) {
-            $placementRow++;
+        for ($placementColumn = $column + $row; $placementColumn > 0; $placementColumn--) {
+            if ($placementColumn > 6) {
+                $placementColumn = 6;
+            }
             if ($this->spotIsTaken($placementColumn, $placementRow)) {
                 return false;
             }
+            $placementRow++;
         }
 
          // Test diagonal top-left to bottom-right
-        $placementColumn = 0;
-        for ($placementRow = $row - $column; $placementRow < 6; $placementRow++) {
-            
-            $placementColumn++;
-            if ($this->spotIsTaken($placementRow, $placementColumn)) {
+        $placementRow = 0;
+        for ($placementColumn = $column - $row; $placementColumn < 6; $placementColumn++) {
+            if ($placementColumn < 0) {
+                $placementColumn = 0;
+            }
+            if ($this->spotIsTaken($placementColumn, $placementRow)) {
                 return false;
             }
+            $placementRow++;
         }
 
         return true;
