@@ -1,6 +1,9 @@
 # Chessboard Assignment
 
-Make a chessboard with a size of 7x7 and place 7 queens in a way that they can't kill eachother.
+Make a chessboard with a size of 7x7 and place 7 queens in a way that they can't kill eachother. The idea is that you spend no more than 4 hours on it. 
+
+*Commit 64ea455206370bcecadea1f6cea962efc3054f8d is the final commit within the agreed upon 4 hours*
+(I wanted to make some late night revisions to maybe crack the problem)
 
 Technical Requirements:
 
