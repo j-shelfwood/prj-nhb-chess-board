@@ -2,8 +2,14 @@
 
 Make a chessboard with a size of 7x7 and place 7 queens in a way that they can't kill eachother.
 
+Technical Requirements:
+
+- PHP 7.4
+- Composer
 
 ## Installation
+
+This repository uses Laravel Zero behind the scenes to create a simple environment for making console applications and testing them.
 
 Clone the repository and run the following command:
 
