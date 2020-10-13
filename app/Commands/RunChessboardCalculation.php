@@ -34,7 +34,7 @@ class RunChessboardCalculation extends Command
      */
     public function handle()
     {
-        $chessboard = new Chessboard(); 
+        $chessboard = new Chessboard($this); 
         
         $columnsToCheck = range(0, $chessboard->size - 1);
         $rowsToCheck = range(0, $chessboard->size - 1);
